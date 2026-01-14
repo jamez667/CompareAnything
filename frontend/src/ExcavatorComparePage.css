@@ -1,0 +1,191 @@
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.excavator-detail-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.excavator-detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.excavator-detail-header {
+  position: sticky;
+  top: 1rem;
+  background: white;
+  z-index: 10;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.excavator-detail-name {
+  font-size: 1.75rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  display: block;
+  visibility: visible;
+}
+
+.excavator-detail-manufacturer {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.excavator-images-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.image-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-view h3 {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+  font-weight: 600;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.excavator-image {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.excavator-detail-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: #555;
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.spec-value {
+  color: #333;
+  text-align: right;
+  flex: 1;
+  word-break: break-word;
+}
+
+.no-selection {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.no-selection h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.back-button {
+  background-color: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #5568d3;
+}
+
+.back-button-header {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 1rem;
+}
+
+.back-button-header:hover {
+  background-color: white;
+  color: #667eea;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.5rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .excavator-images-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spec-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .spec-value {
+    text-align: left;
+  }
+}

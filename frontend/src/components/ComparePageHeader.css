@@ -1,0 +1,16 @@
+.back-button-header {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 1rem;
+}
+
+.back-button-header:hover {
+  background-color: white;
+  color: #667eea;
+}
