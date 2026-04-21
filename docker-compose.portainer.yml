@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  compareanything-backend:
+    image: ghcr.io/jamez667/compareanything-backend:latest
+    environment:
+      - PORT=8080
+      - CORS_ORIGINS=http://localhost
+    networks:
+      - compareanything
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      resources:
+        limits:
+          memory: 64M
+
+  compareanything-frontend:
+    image: ghcr.io/jamez667/compareanything-frontend:latest
+    networks:
+      - compareanything
+      - npm_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      resources:
+        limits:
+          memory: 32M
+
+networks:
+  compareanything:
+    driver: overlay
+  npm_network:
+    external: true

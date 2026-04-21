@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  compareanything-backend:
+    build: ./backend
+    environment:
+      - PORT=8080
+      - CORS_ORIGINS=http://compareanything.localhost
+    networks:
+      - compareanything
+    restart: unless-stopped
+
+  compareanything-frontend:
+    build: ./frontend
+    depends_on:
+      - compareanything-backend
+    networks:
+      - compareanything
+      - traefik-public
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.compareanything.rule=Host(`compareanything.localhost`)
+      - traefik.http.services.compareanything.loadbalancer.server.port=80
+    restart: unless-stopped
+
+networks:
+  compareanything:
+    driver: bridge
+  traefik-public:
+    external: true
