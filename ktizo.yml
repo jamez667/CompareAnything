@@ -1,0 +1,36 @@
+# Ktizo deployment — picked up automatically by ktizo when this repo is registered.
+# Uses pre-built images from GHCR (pushed by CI on each merge to main).
+# Frontend nginx proxies /api/ to the backend container at compareanything-backend:8080.
+
+name: compareanything
+
+services:
+  compareanything-frontend:
+    image: ghcr.io/jamez667/compareanything-frontend:${IMAGE_TAG:-latest}
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "ktizo"
+      traefik.http.routers.compareanything.rule: "Host(`compareanything.ktizo.local`)"
+      traefik.http.routers.compareanything.entrypoints: "web"
+      traefik.http.routers.compareanything.service: "compareanything"
+      traefik.http.services.compareanything.loadbalancer.server.port: "80"
+    networks:
+      - default
+      - ktizo
+    depends_on:
+      - compareanything-backend
+    restart: unless-stopped
+
+  compareanything-backend:
+    image: ghcr.io/jamez667/compareanything-backend:${IMAGE_TAG:-latest}
+    environment:
+      PORT: "8080"
+      CORS_ORIGINS: "${CORS_ORIGINS:-http://compareanything.ktizo.local}"
+    networks:
+      - default
+    restart: unless-stopped
+
+networks:
+  default:
+  ktizo:
+    external: true
